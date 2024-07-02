@@ -15,7 +15,7 @@ function App() {
  
   useEffect(() => {
     async function getConverter() {
-      if(!amount)return
+   
       const response = await fetch(
         `https://api.frankfurter.app/latest?amount=${amount}&from=${convert}&to=${convert2}`
       );
@@ -24,6 +24,8 @@ function App() {
 
       setConvertedAmount(data.rates[convert2]);
     }
+
+    if(convert===convert2)return setConvertedAmount(amount)
 
     getConverter();
   }, [amount,convert, convert2]);
